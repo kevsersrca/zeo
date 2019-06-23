@@ -1,0 +1,130 @@
+{% extends 'layouts/home.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<hr>
+ <div class="row">
+     <div class="col-md-12">
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h5 class="mb-0">
+                        <button class="btn btn-secondary btn-block" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Sorgu Görüntüle
+                        </button>
+                      </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <pre id="json"></pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+     <div class="row">
+         <div class="col-md-6">
+             <hr>
+             <h4>"{{ fname }}" Adında Oyuncular ve Filmleri</h4>
+            <table class="table table-hover">
+                 <thead>
+                    <tr>
+                        <th scope="col">Oynadığı Film</th>
+                        <th></th>
+                        <th></th>
+                        <th scope="col">Oyuncu</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                 {% for key in Value %}
+                     {% for k,v in key.items %}
+                          {% for val in v %}
+                              <tr>
+                              {% for c,z in val.items %}
+                                  <td>
+                                      {% if c == "film_name" %}
+                                          {{z}}
+                                      {% endif %}</td>
+                                  <td>{% for l in z%}
+                                      {% for m,n in l.items %}
+                                          {% if m == "performance.actor" %}
+                                              {% for r in n%}
+                                                  {% for f,g in r.items %}
+                                                      {{g}}
+                                                  {% endfor %}
+                                              {% endfor %}
+                                          {% endif %}
+                                      {% endfor %}
+                                  {% endfor %}</td>
+                              {% endfor %}
+                              </tr>
+                          {% endfor %}
+                     {% endfor %}
+                 {% empty %}
+                    <td colspan="4">Sonuç Bulunamadı</td>
+                 {% endfor %}
+                 </tbody>
+             </table>
+         </div>
+         <div class="col-md-6">
+             <hr>
+             <h4>"{{ lname }}" Soyadında Oyuncular ve Filmleri</h4>
+             <table class="table table-hover">
+                 <thead>
+                    <tr>
+                        <th scope="col">Oynadığı Film</th>
+                        <th></th>
+                        <th></th>
+                        <th scope="col">Oyuncu</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                 {% for key in Value2 %}
+                     {% for k,v in key.items %}
+                          {% for val in v %}
+                              <tr>
+                              {% for c,z in val.items %}
+                                  <td>
+                                      {% if c == "film_name" %}
+                                          {{z}}
+                                      {% endif %}</td>
+                                  <td>{% for l in z%}
+                                      {% for m,n in l.items %}
+                                          {% if m == "performance.actor" %}
+                                              {% for r in n%}
+                                                  {% for f,g in r.items %}
+                                                      {{g}}
+                                                  {% endfor %}
+                                              {% endfor %}
+                                          {% endif %}
+                                      {% endfor %}
+                                  {% endfor %}</td>
+                              {% endfor %}
+                              </tr>
+                          {% endfor %}
+                     {% endfor %}
+                 {% empty %}
+                    <td colspan="4">Sonuç Bulunamadı</td>
+                 {% endfor %}
+                 </tbody>
+             </table>
+         </div>
+     </div>
+ </div>
+{% else %}
+<div class="authenticateDiv">
+    <p class="text-center">Please Login</p>
+    <div class = "btn-default">
+        <a href="/login/auth0" class="btn btn-lg btn-block btn-dark">Login</a>
+    </div>
+</div>
+
+{% endif %}
+{% endblock content %}
+
+{% block script %}
+    var data = `{{Query}}`
+    document.getElementById("json").innerHTML = data
+
+{% endblock script%}

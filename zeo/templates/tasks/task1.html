@@ -1,0 +1,117 @@
+{% extends 'layouts/home.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<hr>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="accordion" id="accordionExample">
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h5 class="mb-0">
+                    <button class="btn btn-secondary btn-block" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Sorgu Görüntüle
+                    </button>
+                  </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <pre id="json"></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <hr>
+            <h3>Task 1 Sonuçlar</h3>
+
+            <div class="movie_card" id="ave">
+              <div class="info_section">
+                <div class="movie_header">
+                <img class="locandina" src="https://m.media-amazon.com/images/M/MV5BMjlmNzdjZWYtODVlMi00NTMwLWI2OTEtNDk4ZDEwNjZmM2I2XkEyXkFqcGdeQXVyMjkzMDcwMjU@._V1_.jpg"/>
+                     {% for key in Value %}
+                        {% for k,v in key.items %}
+                            {% if k == "name@tr" %}
+                                <h1>{{ v }}</h1>
+                                <hr>
+                            {% elif k == "name@en" %}
+                                <p>İngilizce İsmi : <b>{{ v }}</b></p>
+                            {% elif k == "initial_release_date" %}
+                                <p> Yıl : <b id="date">{{ v  }}</b></p>
+                            {% elif k == "director.film" %}
+                                <p>Director :
+                                    {% for z in v %}
+                                        {% for m,n in z.items %}
+                                            {% if m == "name@en" %}
+                                                <b>{{ n }}</b>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endfor %}
+                                </p>
+                            {% elif k == "genre" %}
+                                 <p class="type"> Tür :
+                                    {% for z in v %}
+                                        {% for m,n in z.items %}
+                                            {% if m == "name@en" %}
+                                                <b>{{ n }}</b>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endfor %}
+                                 </p>
+                            {% elif k == "starring" %}
+                                <p>Karakterler :
+                                <br>
+                                {% for z in v %}
+                                    {% for m,n in z.items %}
+                                        {% if m == "performance.actor" %}
+                                            {% for q in n %}
+                                                {% for w,e in q.items %}
+                                                    {% if w == "name@en" %}
+                                                        <b>{{ e }} -</b>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endfor %}
+                                        {% endif %}
+                                        {% if m == "performance.character" %}
+                                            {% for q in n %}
+                                                {% for w,e in q.items %}
+                                                    {% if w == "name@en" %}
+                                                        <b>{{ e }}</b><br>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                                </p>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+              </div>
+              <div class="blur_back ave_back"></div>
+            </div>
+        </div>
+    </div>
+{% else %}
+<div class="authenticateDiv">
+    <p class="text-center">Please Login</p>
+    <div class = "btn-default">
+        <a href="/login/auth0" class="btn btn-lg btn-block btn-dark">Login</a>
+    </div>
+</div>
+
+{% endif %}
+{% endblock content %}
+
+{% block script %}
+    var data = `{{Query}}`
+    document.getElementById("json").innerHTML = data
+
+    var result = document.getElementById("date").innerHTML
+    var str = result.toString()
+    var words = str.split('-');
+    document.getElementById("date").innerHTML = words[0]
+{% endblock script%}

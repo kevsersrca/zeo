@@ -1,0 +1,79 @@
+{% extends 'layouts/home.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <hr>
+    <h1><center>Search</center></h1>
+
+    <form autocomplete="off" action="/task/7" method="post">
+    {% csrf_token %}
+      <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+              <div class="autocomplete">
+                  <input id="myInput" type="text" style="width: 300px" name="genre" placeholder="Genres" required>
+              </div>
+          </div>
+          <div class="col-md-4">
+                 <div class="autocomplete">
+                  <input type="text" name="year" style="width: 300px" placeholder="Date (Format:2019-01-01)" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+              </div>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                 <input type="submit" class="btn btn-primary btn-block" style="margin: 5%">
+            </div>
+      </div>
+         <div class="row">
+
+        </div>
+    </form>
+
+    <h1>Arama Sonuçları</h1>
+    <hr>
+    <div class="row">
+    {% if Value != None %}
+        {% for key in Value %}
+            {% for k,v in key.items %}
+                {% if k == "director.film" %}
+                    {% for z in v %}
+                        {% for m,n in z.items %}
+                            {% for c in n %}
+                                {% for p,q in c.items %}
+                                    {% if q == Genre %}
+                                        <div class="col-md-4">
+                                        <div class="card border-success mb-3" style="max-width: 20rem;">
+                                          <div class="card-header">{{ q }}</div>
+                                          <div class="card-body">
+                                            <h4 class="card-title">{{ z.name }}</h4>
+                                            <p class="card-text">{{ z.initial_release_date }}</p>
+                                          </div>
+                                        </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+    {% else %}
+    <div class="authenticateDiv">
+        <p class="text-center">Please Login</p>
+        <div class = "btn-default">
+            <a href="/login/auth0" class="btn btn-lg btn-block btn-dark">Login</a>
+        </div>
+    </div>
+
+{% endif %}
+{% endblock content %}
+
+{% block script %}
+
+  	var countries =  ['Drama', 'Comedy', 'Thriller', 'Action Film', 'Romance Film', 'Crime Fiction', 'Adventure Film', 'Horror', 'Family', 'Action/Adventure' ,'Science Fiction' ,'Mystery' ,'Fantasy' ,'Indie film' ,'Romantic comedy' ,'Biographical film' ,'Short Film' ,'Crime Thriller' ,'Animation' ,'War film' ,'Film adaptation' ,'Comedy-drama' ,'Historical period drama' ,'Television film' ,'Backstage Musical' ,'Psychological thriller' ,'Western' ,'Sports films' ,'Black comedy' ,'Parody' ,'Cult film' ,'Suspense' ,'Teen film' ,'Historical fiction' ,'Musical Drama' ,'Family Drama' ,'World cinema' ,'Political drama' ,'Slasher' ,'Satire' ,'Musical comedy', 'Childrens/Family', 'Music' ,'Buddy film' ,'Black-and-white' ,'Costume drama' ,'Action Thriller' ,'Supernatural' ,'Coming of age' ,'Slapstick' ,'Spy film' ,'Horror comedy' ,'LGBT' ,'Docudrama' ,'Film noir' ,'Epic film' ,'Documentary film' ,'Disaster Film' ,'Martial Arts Film' ,'Screwball comedy' ,'Road movie' ,'Gangster Film' ,'Superhero movie' ,'Detective fiction' ,'Trial drama' ,'Historical drama' ,'Ensemble Film' ,'Crime Drama' ,'Farce' ,'Political thriller' ,'History' ,'Melodrama' ,'Erotic thriller' ,'Comedy of manners' ,'Sex comedy' ,'B movie', 'Childrens Fantasy', 'Adventure Comedy' ,'Crime Comedy' ,'Action Comedy' ,'Fantasy Adventure' ,'Creature Film' ,'Family-Oriented Adventure' ,'Experimental film' ,'Erotica' ,'Heist film' ,'Monster movie' ,'Domestic Comedy' ,'Fantasy Comedy' ,'Chase Movie' ,'Comedy of Errors' ,'Swashbuckler film' ,'Political cinema' ,'Animal Picture' ,'Japanese Movies' ,'Doomsday film' ,'Stop motion' ,'Crime' ,'Comedy Western', 'Mockumentary', 'Natural horror film', 'Pornographic film', 'Zombie Film', 'Caper story', 'Comedy Thriller', 'Costume Horror', 'Media Satire', 'Alien Film', 'Sci-Fi Horror', 'Chinese Movies', 'Marriage Drama', 'Costume Adventure', 'Time travel', 'Gothic Film', 'Sword and sorcery', 'Remake', 'Absurdism', 'Medical fiction', 'Christmas movie', 'Social problem film', 'Feminist Film', 'Police Comedy', 'Dystopia', 'Gay Themed', 'Neo-noir', 'Workplace Comedy', 'Computer Animation', 'Monster', 'Prison film', 'Political satire', 'Religious Film', 'Childhood Drama', 'Gay', 'Anime', 'Holiday Film', 'Blaxploitation film', 'Gay Interest', 'Auto racing', 'Romantic fantasy', 'Tragicomedy', 'Drama', 'Dance film', 'Spaghetti Western', 'Post-Apocalyptic fiction', 'Silent film', 'Whodunit', 'Combat Films', 'Erotic Drama', 'Slice of life', 'Historical Epic', 'Avant-garde', 'Christian film', 'Sword and Sandal film', 'Haunted House Film', 'Revisionist Western', 'Stoner film', 'Anti-war film', 'Existentialism', 'Fairy tale', 'Coming-of-age story', 'True crime', 'Glamorized Spy Film', 'Airplanes and airports', 'Future noir', 'Sci-Fi Adventure', 'Animated cartoon', 'Jungle Film', 'Splatter film', 'Escape Film', 'Steampunk', 'Fantasy', 'Roadshow theatrical release', 'Buddy cop film', 'Sexploitation film', 'Softcore pornography', 'Parody film', 'Cartoon', 'Gross out', 'Legal drama', 'Inspirational Drama', 'Heaven-Can-Wait Fantasies', 'Heavenly Comedy', 'Hip hop film', 'Bollywood', 'Hybrid Western', 'Courtroom Comedy', 'Punk rock', 'Rockumentary', 'Biker Film', 'Fiction', 'Concert film', 'Road-Horror', 'Surf film', 'Adventure game', 'Hagiography', 'Jukebox musical', 'Epic Western', 'British Empire Film', 'Surrealism', 'British New Wave', 'Educational film', 'Giallo', 'Animated Musical', 'Albinism in popular culture', 'Mythological Fantasy', 'Juvenile Delinquency Film', 'Psychological horror', 'Police procedural', 'Science fiction film', 'Adventure', 'Revenge', 'Anthology', 'Stand-up comedy', 'Mystery film', 'Psycho-biddy', 'Northern', 'Archives and records', 'Wuxia', 'Archaeology', 'Animal', 'Beach Film', 'Psychological Drama', 'Essay Film', 'Cavalry Film', 'Mafia comedy', 'Travel', 'Bengali Cinema', 'Movies About Gladiators', 'Sports', 'Human sexuality', 'Propaganda film', 'Culture & Society', 'Kitchen sink realism', 'Nuclear warfare', 'Z movie', 'Crime film', 'Libraries and librarians', 'Nunsploitation', 'Television pilot', 'News', 'Anime Sci-Fi', 'Therimin music', 'Indian Western', 'Business', 'Murder-mystery', 'Lost film', 'East Asian cinema', 'Found footage', 'Sketch comedy', 'Vigilante film', 'Arts and Culture', 'Cyberpunk', 'Music video', 'Media studies', 'Werewolf fiction', 'Acid Western', 'Space opera', 'Space Western', 'Biography', 'Samurai cinema', 'Star vehicle', 'Female buddy film', 'Instrumental Music', 'Gulf War', 'Equestrianism', 'Christmas', 'Techno-thriller', 'Museums and art galleries', 'Film-Opera', 'Films with live action and animation', 'Non-fiction', 'Education', 'Ballet', 'Exploitation film', 'Outlaw', 'Demonic child', 'Humour', 'Kafkaesque', 'Biological Sciences', 'Zombie comedy', 'Poliziotteschi', 'Film à clef', 'Race film'];
+    autocomplete(document.getElementById("myInput"), countries);
+
+{% endblock script %}
+

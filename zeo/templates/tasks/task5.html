@@ -1,0 +1,91 @@
+{% extends 'layouts/home.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+     <hr>
+     <h4>Atatürk'ün Gençliğe Hitabesindeki Kelimeleri İçeren Filmler</h4>
+     <hr>
+
+   <div id='main'>
+        <div class='row'>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <button id='startThread' class='btn btn-primary'>Start Thread Async</button>
+                <div style='clear:both'></div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class="col-md-4"></div>
+            <div id='thread_msg' class="col-md-4"></div>
+        </div>
+    </div>
+{% else %}
+<div class="authenticateDiv">
+    <p class="text-center">Please Login</p>
+    <div class = "btn-default">
+        <a href="/login/auth0" class="btn btn-lg btn-block btn-dark">Login</a>
+    </div>
+</div>
+
+{% endif %}
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+        <script type='text/javascript'>
+        $(document).ready(function(){
+            $('#startThread').on('click',function(){
+                $.ajax({
+                    type: "GET",
+                    cache: false,
+                    url: "/startTask",
+                    dataType: "json",
+                    success: function(data) {
+                        var msg = $('<div id=" '+ data.id +'">').text('Task ' + data.id + ' working')
+                        $('#thread_msg').append(msg)
+                        var i = 0;
+                        var threadInterval = setInterval(function(){
+                            checkTask("/checkTask/" + data.id, function(check){
+                                msg.html("")
+                                if(check.is_done){
+                                    msg.text('Task ' + data.id + ' succeeded.')
+                                    msg.html("<hr><h4>Filmler</h4><br>")
+                                    console.log(check.task)
+                                    var arr = check.task.split('[');
+                                    $.each( arr, function( key, value ) {
+                                            var arr2 = value.split(',');
+                                            $.each( arr2, function( key2, value2 ) {
+                                                arr3 = value2.split("]")
+                                                $.each( arr3, function( key3, value3 ) {
+                                                     arr4 = value3.split("'")
+                                                        $.each( arr4, function( key4, value4 ) {
+                                                            if (value4 || value4.length !== 0 || value4 !== "None"){
+                                                                msg.append(value4.toString())
+                                                            }
+                                                        });
+                                                });
+                                                msg.append("<br>")
+                                            });
+                                    });
+                                    window.clearInterval(threadInterval)
+                                }
+                                if(++i === 10){
+                                    msg.text('Task ' + data.id + ' failed.')
+                                    window.clearInterval(threadInterval)
+                                }
+                            })
+                        },10000)
+                    }
+                })
+            })
+            function checkTask(url,cb){
+                $.ajax({
+                    type: "GET",
+                    cache: false,
+                    url: url,
+                    dataType: "json",
+                    success: function(data) {
+                        cb(data)
+                    }
+                })
+            }
+        })
+    </script>
+{% endblock content %}
