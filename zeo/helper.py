@@ -7,6 +7,7 @@ import time
 
 
 class Helper():
+
         def __init__(self):
             self.client_stub = pydgraph.DgraphClientStub('134.209.105.213:9080')
             self.client = pydgraph.DgraphClient(self.client_stub)

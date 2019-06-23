@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bdf25464-25f6-446f-b8c1-0bb3cec6340d" name="Default Changelist" comment="" />
+    <list default="true" id="bdf25464-25f6-446f-b8c1-0bb3cec6340d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/zeo/tests/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zeo/helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/zeo/helper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zeo/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/zeo/tests/tests.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,10 +33,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/manage.py">
+        <entry file="file://$PROJECT_DIR$/zeo/tests/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="456">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -65,6 +73,9 @@
       <find>hita</find>
     </findStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -94,8 +105,9 @@
         <option value="$PROJECT_DIR$/zeo/migrations/0001_initial.py" />
         <option value="$PROJECT_DIR$/zeo/templates/tasks/task5.html" />
         <option value="$PROJECT_DIR$/zeo/auth0backend.py" />
-        <option value="$PROJECT_DIR$/zeo/helper.py" />
         <option value="$PROJECT_DIR$/zeo/views.py" />
+        <option value="$PROJECT_DIR$/zeo/helper.py" />
+        <option value="$PROJECT_DIR$/zeo/tests/tests.py" />
       </list>
     </option>
   </component>
@@ -103,6 +115,7 @@
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -128,11 +141,13 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/zeo/tests" />
       <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/zeo" />
       <recent name="$PROJECT_DIR$/zeo/views" />
@@ -188,12 +203,12 @@
       <updated>1560974187419</updated>
       <workItem from="1560974190341" duration="9655000" />
       <workItem from="1561069922137" duration="614000" />
-      <workItem from="1561115647731" duration="82615000" />
+      <workItem from="1561115647731" duration="87417000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92884000" />
+    <option name="totallyTimeSpent" value="97686000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -208,7 +223,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25679544" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25679544" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -222,7 +237,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007153" side_tool="true" weight="0.32891566" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49928468" weight="0.96024096" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49928468" visible="true" weight="0.4939759" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32891566" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -503,13 +518,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zeo/helper.py">
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="266">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
@@ -525,8 +540,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/zeo/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+        <state relative-caret-position="211">
+          <caret line="31" column="26" lean-forward="true" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
             <element signature="e#2104#2239#0" />
@@ -536,13 +551,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage.py">
+    <entry file="file://$PROJECT_DIR$/zeo/helper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="-424">
+          <caret line="134" column="12" selection-start-line="134" selection-start-column="12" selection-end-line="134" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zeo/tests/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
